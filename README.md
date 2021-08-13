@@ -7,7 +7,7 @@ SimCSE在中文上的复现，有监督+无监督
 
 jsonlinesjsonlines
 
-https://img.shields.io/badge/transformers-4.4.1-red.svg
+[](https://img.shields.io/badge/transformers-4.4.1-red.svg)
 
 
 
