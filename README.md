@@ -24,8 +24,8 @@ SimCSE在中文上的复现，无监督 + 有监督
 
 ```shell
 > datasets		数据集文件夹
-	> cnsd-snli
-	> STS-B
+  > cnsd-snli
+  > STS-B
 > pretrained_model	各种预训练模型文件夹
 > saved_model		微调之后保存的模型文件夹
   data_preprocess.py	snli数据集的数据预处理
@@ -35,38 +35,38 @@ SimCSE在中文上的复现，无监督 + 有监督
 
 ### 3. 使用
 
-1. 需要将公开数据集和预训练模型放到指定目录下， 并检查在代码中的位置是否对应
+需要将公开数据集和预训练模型放到指定目录下， 并检查在代码中的位置是否对应
 
-   ```python
-   # 预训练模型目录
-   BERT = 'pretrained_model/bert_pytorch'
-   model_path = BERT 
-   # 微调后参数存放位置
-   SAVE_PATH = './saved_model/simcse_unsup.pt'
-   # 数据目录
-   SNIL_TRAIN = './datasets/cnsd-snli/train.txt'
-   STS_TRAIN = './datasets/STS-B/cnsd-sts-train.txt'
-   STS_DEV = './datasets/STS-B/cnsd-sts-dev.txt'
-   STS_TEST = './datasets/STS-B/cnsd-sts-test.txt'
-   ```
+```python
+# 预训练模型目录
+BERT = 'pretrained_model/bert_pytorch'
+model_path = BERT 
+# 微调后参数存放位置
+SAVE_PATH = './saved_model/simcse_unsup.pt'
+# 数据目录
+SNIL_TRAIN = './datasets/cnsd-snli/train.txt'
+STS_TRAIN = './datasets/STS-B/cnsd-sts-train.txt'
+STS_DEV = './datasets/STS-B/cnsd-sts-dev.txt'
+STS_TEST = './datasets/STS-B/cnsd-sts-test.txt'
+```
 
-2. 数据预处理(需要先执行此文件)：
+数据预处理(需要先执行此文件)：
 
-   ```shell
-   python data_preprocess.py
-   ```
+```shell
+python data_preprocess.py
+```
 
-3. 无监督训练
+无监督训练
 
-   ```shell
-   python simcse_unsup.py
-   ```
+```shell
+python simcse_unsup.py
+```
 
-4.  有监督训练
+有监督训练
 
-   ```shell
-   python simcse_sup.py
-   ```
+```shell
+python simcse_sup.py
+```
 
 ### 4. 下载
 
