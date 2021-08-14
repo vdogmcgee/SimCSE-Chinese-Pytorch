@@ -38,18 +38,6 @@ STS_DEV = './datasets/STS-B/cnsd-sts-dev.txt'
 STS_TEST = './datasets/STS-B/cnsd-sts-test.txt'
 
 
-def timer(func):
-    """ time-consuming decorator 
-    """
-    def wrapper(*args, **kwargs):
-        ts = time.time()
-        res = func(*args, **kwargs)
-        te = time.time()
-        print(f"function: `{func.__name__}` running time: {te - ts:.4f} secs")
-        return res
-    return wrapper
-
-
 def load_data(name: str, path: str) -> List:
     """根据名字加载不同的数据集
     """
@@ -161,7 +149,6 @@ def simcse_sup_loss(y_pred: 'tensor') -> 'tensor':
     return torch.mean(loss)
     
 
-@timer
 def eval(model, dataloader) -> float:
     """模型评估函数 
     批量预测, 计算cos_sim, 转成numpy数组拼接起来, 一次性求spearman相关度
