@@ -15,7 +15,7 @@ SimCSE在中文上的复现，无监督 + 有监督
 
 ### 1. 背景
 
-***
+---
 
 最近看了SimCSE这篇论文，便对论文做了pytorch版的复现和评测
 
@@ -24,7 +24,7 @@ SimCSE在中文上的复现，无监督 + 有监督
 
 ### 2. 文件
 
-***
+---
 
 ```shell
 > datasets		数据集文件夹
@@ -39,7 +39,7 @@ SimCSE在中文上的复现，无监督 + 有监督
 
 ### 3. 使用
 
-****
+
 
 需要将公开数据集和预训练模型放到指定目录下， 并检查在代码中的位置是否对应
 
@@ -76,7 +76,7 @@ python simcse_sup.py
 
 ### 4. 下载
 
-****
+---
 
 数据集：
 
@@ -91,7 +91,7 @@ python simcse_sup.py
 
 ### 5. 测评
 
-****
+---
 
 测评指标为spearman相关系数
 
@@ -104,8 +104,6 @@ python simcse_sup.py
 | BERT-wwm-ext    | 0.7271    | 0.6669     |
 | RoBERTa-wwm-ext | 0.7558    | 0.7141     |
 
-
-
 有监督：batch_size=64，lr=1e-5，pooling=cls
 
 | 模型            | STS-B dev | STS-B test | 收敛所需样本数 |
@@ -117,7 +115,7 @@ python simcse_sup.py
 
 ### 6. 参考
 
-****
+---
 
 - https://arxiv.org/pdf/2104.08821.pdf
 - 苏剑林. (Apr. 26, 2021). 《中文任务还是SOTA吗？我们给SimCSE补充了一些实验 》[Blog post]. Retrieved from https://kexue.fm/archives/8348
