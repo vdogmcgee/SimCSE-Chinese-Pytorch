@@ -24,8 +24,8 @@ SimCSE在中文上的复现，无监督 + 有监督
 
 ```shell
 > datasets		数据集文件夹
-  > cnsd-snli
-  > STS-B
+   > cnsd-snli
+   > STS-B
 > pretrained_model	各种预训练模型文件夹
 > saved_model		微调之后保存的模型文件夹
   data_preprocess.py	snli数据集的数据预处理
@@ -93,6 +93,8 @@ python simcse_sup.py
 | BERT-wwm        | 0.7229    | 0.6628     |
 | BERT-wwm-ext    | 0.7271    | 0.6669     |
 | RoBERTa-wwm-ext | 0.7558    | 0.7141     |
+
+
 
 有监督：batch_size=64，lr=1e-5，pooling=cls
 
