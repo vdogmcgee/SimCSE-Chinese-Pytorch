@@ -1,0 +1,33 @@
+# 匹配规则和linux文件匹配一样
+# 以斜杠“/”开头表示目录；
+# 以星号“*”通配多个字符；
+# 以问号“?”通配单个字符
+# 以方括号“[]”包含单个字符的匹配列表；
+# 以叹号“!”表示不忽略(跟踪)匹配到的文件或目录；
+
+
+# 常用
+__pycache__/
+*.pyc
+
+
+log/
+*.log
+
+*.bak
+
+# 忽略数据文件夹
+datasets/cnsd-snli/*
+datasets/lqcmc/*
+datasets/STS-B/*
+
+# 忽略预训练模型文件夹
+pretrained_model/*
+
+
+# 忽略权重文件
+*.ckpt
+*.bin
+*.pt
+*.pth
+
