@@ -13,7 +13,9 @@ from loguru import logger
 from scipy.stats import spearmanr
 from torch.utils.data import DataLoader, Dataset
 from tqdm import tqdm
-from transformers import BertConfig, BertModel, BertTokenizer
+from transformers import BertTokenizer
+
+from small_bert.modeling import BertConfig, BertModel
 
 # 基本参数
 EPOCHS = 1
@@ -24,13 +26,11 @@ POOLING = 'cls'   # choose in ['cls', 'pooler', 'last-avg', 'first-last-avg']
 DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu') 
 
 # 预训练模型目录
-BERT = 'pretrained_model/bert_pytorch'
-BERT_WWM_EXT = 'pretrained_model/bert_wwm_ext_pytorch'
-ROBERTA = 'pretrained_model/roberta_wwm_ext_pytorch'
+BERT = '/data/lianglong/dataset/bert_family/dustess_bert/dusbert_small_pytorch'
 model_path = BERT
 
 # 微调后参数存放位置
-SAVE_PATH = './saved_model/simcse_sup.pt'
+SAVE_PATH = './saved_model_small/pytorch_model_lr1dp0.bin'
 
 # 数据位置
 SNIL_TRAIN = './datasets/cnsd-snli/train.txt'
@@ -105,11 +105,11 @@ class SimcseModel(nn.Module):
         
     def forward(self, input_ids, attention_mask, token_type_ids):
         
-        # out = self.bert(input_ids, attention_mask, token_type_ids)
-        out = self.bert(input_ids, attention_mask, token_type_ids, output_hidden_states=True)
+        out = self.bert(input_ids, token_type_ids, attention_mask)
 
         if self.pooling == 'cls':
-            return out.last_hidden_state[:, 0]  # [batch, 768]
+            return out[0][-1][:, 0]
+            # return out.last_hidden_state[:, 0]  # [batch, 768]
         
         if self.pooling == 'pooler':
             return out.pooler_output            # [batch, 768]
@@ -146,7 +146,7 @@ def simcse_sup_loss(y_pred: 'tensor') -> 'tensor':
     sim = sim / 0.05
     # 计算相似度矩阵与y_true的交叉熵损失
     loss = F.cross_entropy(sim, y_true)
-    return loss
+    return torch.mean(loss)
     
 
 def eval(model, dataloader) -> float:
@@ -195,7 +195,7 @@ def train(model, train_dl, dev_dl, optimizer) -> None:
         loss.backward()
         optimizer.step()
         # 评估
-        if batch_idx % 10 == 0:
+        if batch_idx % 100 == 0:
             logger.info(f'loss: {loss.item():.4f}')
             corrcoef = eval(model, dev_dl)
             model.train()
@@ -241,4 +241,5 @@ if __name__ == '__main__':
     test_corrcoef = eval(model, test_dataloader)
     logger.info(f'dev_corrcoef: {dev_corrcoef:.4f}')
     logger.info(f'test_corrcoef: {test_corrcoef:.4f}')
+    
     
