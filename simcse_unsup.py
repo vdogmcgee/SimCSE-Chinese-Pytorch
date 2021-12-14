@@ -142,7 +142,7 @@ def simcse_unsup_loss(y_pred: 'tensor') -> 'tensor':
     sim = sim / 0.05
     # 计算相似度矩阵与y_true的交叉熵损失
     loss = F.cross_entropy(sim, y_true)
-    return torch.mean(loss)
+    return loss
 
 
 def eval(model, dataloader) -> float:
