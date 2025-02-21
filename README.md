@@ -15,7 +15,7 @@ SimCSE在中文上的复现，无监督 + 有监督
 
 ### 1. 背景
 
-最近看了SimCSE这篇论文，便对论文做了pytorch版的复现和评测
+最近看了SimCSE这篇论文，思路很有意思，便对论文做了pytorch版的复现和评测
 
 - 论文：https://arxiv.org/pdf/2104.08821.pdf
 - 官方：https://github.com/princeton-nlp/SimCSE
